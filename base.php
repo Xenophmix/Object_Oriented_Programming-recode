@@ -64,6 +64,76 @@ function find($id)
                ->fetch(PDO::FETCH_ASSOC);
 }
 
+function update($col, ...$args)
+{
+  $sql = "UPDATE $this->table SET ";
+
+  if (is_array($col)) {
+    foreach ($col as $key => $value) {
+      $tmp[] = "`$key`='$value'";
+    }
+
+    $sql = $sql . join(",", $tmp);
+  } else {
+    echo "錯誤，請提供以陣列形式的資料";
+  }
+
+  if (isset($args[0])) {
+
+    if (isset($args[0])) {
+      if (is_array($args[0])) {
+        $tmp = [];
+        foreach ($args[0] as $key => $value) {
+          $tmp[] = "`$key`='$value'";
+        }
+
+        $sql = $sql . " WHERE " . join(" && ", $tmp);
+      } else {
+        //是字串
+        $sql = $sql . " WHERE `id`='{$args[0]}'";
+      }
+    }
+  }
+
+
+  // echo $sql;
+  return $this -> pdo
+               ->exec($sql);
+}
+
+function insert($cols)
+{
+
+  $keys = array_keys($cols);
+  //dd(join("','",$cols));
+
+  $sql = "insert into $this->table (`" . join("`,`", $keys) . "`) values ('" . join("','", $cols) . "')";
+
+  // echo $sql;
+  return $this -> pdo
+               ->exec($sql);
+}
+
+function del($id)
+{
+  global $pdo;
+  $sql = "delete from `$this->table` ";
+
+  if (is_array($id)) {
+    foreach ($id as $key => $value) {
+      $tmp[] = "`$key`='$value'";
+    }
+
+    $sql = $sql . " where " . join(" && ", $tmp);
+  } else {
+
+    $sql = $sql . " where `id`='$id'";
+  }
+
+  // echo $sql;
+  return $this -> pdo
+               ->exec($sql);
+}
 }
 
 $db = new DB('students');
