@@ -60,9 +60,44 @@ $cat = new Animal('cat', '小咪', "虎斑");
 $dog->run();
 $cat->run();
 
-echo "種類是".$dog->getType();
-echo "種類是".$cat->getType();
-echo "名字是".$dog->getName();
-echo "名字是".$cat->getName();
-echo "毛色是".$dog->getColor();
-echo "毛色是".$cat->getColor();
+echo "種類是" . $dog->getType();
+echo "種類是" . $cat->getType();
+echo "名字是" . $dog->getName();
+echo "名字是" . $cat->getName();
+echo "毛色是" . $dog->getColor();
+echo "毛色是" . $cat->getColor();
+echo "<hr>";
+
+class Dog extends Animal
+{
+  public function __construct($name, $hair_color)
+  {
+    $this->type = "狗";
+    $this->name = $name;
+    $this->hair_color = $hair_color;
+  }
+}
+
+$Ex_Dog = new Dog('大汪', '棕色');
+echo "種類是" . $Ex_Dog->getType();
+echo "名字是" . $Ex_Dog->getName();
+echo "毛色是" . $Ex_Dog->getColor();
+echo "<hr>";
+
+
+
+class Cat extends Animal
+{
+  public function __construct($name, $hair_color)
+  {
+    $this->type = "貓";
+    $this->name = $name;
+    $this->hair_color = $hair_color;
+  }
+}
+
+$Ex_Cat = new Cat('大咪', '橘色');
+echo "種類是" . $Ex_Cat->getType();
+echo "名字是" . $Ex_Cat->getName();
+echo "毛色是" . $Ex_Cat->getColor();
+echo "<hr>";
