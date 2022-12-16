@@ -55,8 +55,8 @@ class Animal
   }
 }
 
-$dog = new Animal('dog', '小汪', "白色");
-$cat = new Animal('cat', '小咪', "虎斑");
+$dog = new Animal('狗', '小汪', "白色");
+$cat = new Animal('貓', '小咪', "虎斑");
 $dog->run();
 $cat->run();
 
@@ -67,7 +67,9 @@ echo "名字是" . $cat->getName();
 echo "毛色是" . $dog->getColor();
 echo "毛色是" . $cat->getColor();
 echo "<hr>";
-
+?>
+<H3>繼承</H3>
+<?php
 class Dog extends Animal
 {
   public function __construct($name, $hair_color)
@@ -76,12 +78,18 @@ class Dog extends Animal
     $this->name = $name;
     $this->hair_color = $hair_color;
   }
+  public function trick()
+  {
+    echo "<br>";
+    return "我會接飛盤";
+  }
 }
 
 $Ex_Dog = new Dog('大汪', '棕色');
 echo "種類是" . $Ex_Dog->getType();
 echo "名字是" . $Ex_Dog->getName();
 echo "毛色是" . $Ex_Dog->getColor();
+echo $Ex_Dog->trick();
 echo "<hr>";
 
 
@@ -94,10 +102,16 @@ class Cat extends Animal
     $this->name = $name;
     $this->hair_color = $hair_color;
   }
+  public function trick()
+  {
+    echo "<br>";
+    return "我會爬牆";
+  }
 }
 
 $Ex_Cat = new Cat('大咪', '橘色');
 echo "種類是" . $Ex_Cat->getType();
 echo "名字是" . $Ex_Cat->getName();
 echo "毛色是" . $Ex_Cat->getColor();
+echo $Ex_Cat->trick();
 echo "<hr>";
