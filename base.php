@@ -116,7 +116,6 @@ function insert($cols)
 
 function del($id)
 {
-  global $pdo;
   $sql = "delete from `$this->table` ";
 
   if (is_array($id)) {
@@ -131,6 +130,7 @@ function del($id)
   }
 
   // echo $sql;
+  
   return $this -> pdo
                ->exec($sql);
 }
